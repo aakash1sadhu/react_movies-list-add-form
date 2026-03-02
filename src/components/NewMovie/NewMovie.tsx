@@ -47,6 +47,10 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
     setCount(prev => prev + 1);
   };
 
+  const handleFieldChange = (field: keyof Movie) => (value: string) => {
+    setMovie(prev => ({ ...prev, [field]: value }));
+  };
+
   return (
     <form className="NewMovie" key={count} onSubmit={handleSubmit}>
       <h2 className="title">Add a movie</h2>
@@ -55,7 +59,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
         name="title"
         label="Title"
         value={movie.title}
-        onChange={title => setMovie(prev => ({ ...prev, title }))}
+        onChange={handleFieldChange('title')}
         required
       />
 
@@ -63,14 +67,14 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
         name="description"
         label="Description"
         value={movie.description}
-        onChange={description => setMovie(prev => ({ ...prev, description }))}
+        onChange={handleFieldChange('description')}
       />
 
       <TextField
         name="imgUrl"
         label="Image URL"
         value={movie.imgUrl}
-        onChange={imgUrl => setMovie(prev => ({ ...prev, imgUrl }))}
+        onChange={handleFieldChange('imgUrl')}
         required
       />
 
@@ -78,7 +82,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
         name="imdbUrl"
         label="Imdb URL"
         value={movie.imdbUrl}
-        onChange={imdbUrl => setMovie(prev => ({ ...prev, imdbUrl }))}
+        onChange={handleFieldChange('imdbUrl')}
         required
       />
 
@@ -86,7 +90,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
         name="imdbId"
         label="Imdb ID"
         value={movie.imdbId}
-        onChange={imdbId => setMovie(prev => ({ ...prev, imdbId }))}
+        onChange={handleFieldChange('imdbId')}
         required
       />
 
